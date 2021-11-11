@@ -1,6 +1,16 @@
 # ORBSLAM24Windows
 ORBSLAM2 Project 4(for) Windows Platform
 
+Updated: 2021-11-11
+Originally forked from phdsky
+However, when trying to build on:
+1. Windows 10
+2. Visual Studio 2017 (vc15)
+3. OpenCV (4.5.4) - latest version until now
+
+Found it's not working, and has a lot of compile issues.
+Fixed it.
+
 Easy built orbslam2 by visual studio on windows of both debug and release mode
 
 ## Thanks
