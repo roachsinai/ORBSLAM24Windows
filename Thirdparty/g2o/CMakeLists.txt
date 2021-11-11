@@ -86,6 +86,9 @@ ${g2o_SOURCE_DIR}/types
 ${g2o_SOURCE_DIR}/stuff 
 ${G2O_EIGEN3_INCLUDE})
 
+# 2021-11-9 added by Wentao
+add_definitions(-D WINDOWS)
+
 # Include the subdirectories
 ADD_LIBRARY(g2o ${G2O_LIB_TYPE}
 #types
