@@ -7,6 +7,8 @@ ENDIF()
 
 #MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
+include("E:/vcpkg/scripts/buildsystems/vcpkg.cmake")
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -W0 -MT -bigobj")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W0 -MT -bigobj")
 
@@ -31,6 +33,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W0 -MT -bigobj")
 # 2021-11-11 added by Wentao
 set(CMAKE_CXX_STANDARD 11)
 add_definitions(-D COMPILEDWITHC11)
+
+# add_compile_definitions(_HAS_TR1_NAMESPACE)
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 

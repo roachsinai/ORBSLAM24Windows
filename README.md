@@ -1,12 +1,13 @@
 # ORBSLAM24Windows
 ORBSLAM2 Project 4(for) Windows Platform
 
-Updated: 2021-11-11
+Updated: 2021-11-18
 Originally forked from phdsky
 However, when trying to build on:
-1. Windows 10
-2. Visual Studio 2017 (vc15)
+1. Windows 11
+2. Visual Studio 16 2019
 3. OpenCV (4.5.4) - latest version until now
+4. /std:c++11
 
 Found it's not working, and has a lot of compile issues.
 Fixed it.
@@ -24,27 +25,31 @@ Easy built orbslam2 by visual studio on windows of both debug and release mode
 2. Cmake
  - Version should at least be 2.8.
 3. Visual Studio
- - In this tutorial is VS2013(Corresponding to opencv's vc12). 
+ - In this tutorial is VS2013(Corresponding to opencv's vc12).
+4. vcpkg
+ - Add `CMAKE_TOOLCHAIN_FILE` environment variable.
+ - include `vcpkg/scripts/buildsystems/vcpkg.cmake` in CMakeLists.txt.
 
-So, we'll build a visual studio 2013 project of ORB_SLAM2 using cmake and then make a x64 app. 
-  
+So, we'll build a visual studio 2019 project of ORB_SLAM2 using cmake and then make a x64 app.
+
 ## Steps
 First, we'll compile the projects in **Thirdparty** folder.
 
 ### DBoW2
-1. Open cmake-gui, select DBow2 folder as the source path and the DBow2/build folder as the binaries path.
-2. Click configure, select Visual Studio 12 2013 Win64(or your own) as the generator, click finish.
-3. After configure done, click Generate.
-4. Go to the DBow2/build folder, double click the DBoW2.sln to open the peoject.
-5. Build ALL_BUILD in either debug or release mode you want.
-6. After success build, the libraries will be in the lib folder of the DBow2 project source folder.
+1. `vcpkg.exe install opencv4:x64-windows`
+2. Open cmake-gui, select DBow2 folder as the source path and the DBow2/build folder as the binaries path.
+3. Click configure, select Visual Studio 16 2019 Win64(or your own) as the generator, click finish.
+4. After configure done, click Generate.
+5. Go to the DBow2/build folder, double click the DBoW2.sln to open the peoject.
+6. Build ALL_BUILD in either debug or release mode you want.
+7. After success build, the libraries will be in the lib folder of the DBow2 project source folder.
 
 ### eigen
 **eigen is not need to be built**
 
 ### g2o
 1. Open cmake-gui, select g2o folder as the source path and the g2o/build folder as the binaries path.
-2. Click configure, select Visual Studio 12 2013 Win64(or your own) as the generator, click finish.
+2. Click configure, select Visual Studio 16 2019 Win64(or your own) as the generator, click finish.
 3. After configure done, click Generate.
 4. Go to the g2o/build folder, double click the g2o.sln to open the peoject.
 5. Right click on the g2o project->Properties->C/C++->Preprocessor Definitions, add WINDOWS at the end row, click Apply and OK.
@@ -52,17 +57,18 @@ First, we'll compile the projects in **Thirdparty** folder.
 7. After success build, the libraries will be in the lib folder of the g2o project source folder.
 
 ### Pangolin
-1. Open cmake-gui, select Pangolin folder as the source path and the Pangolin/build folder as the binaries path.
-2. Click configure, select Visual Studio 12 2013 Win64(or your own) as the generator, click finish.
-3. After configure done, click Generate.
-4. Go to the Pangolin/build folder, double click the Pangolin.sln to open the peoject.
-5. Build ALL_BUILD in either debug or release mode you want. **(Mode should be the same as DBoW2 && g2o)**.
-6. You'll get a error of "cannot open input file 'pthread.lib'", just ignore it.
-7. After success build, the libraries will be in the lib folder of the Pangolin project source folder.
+1. check [install_prerequisites.sh](https://github.com/stevenlovegrove/Pangolin/blob/3b2556754ce41fe6a49e7b740bde411a91334ddc/scripts/install_prerequisites.sh#L156) and use vcpkg to install required libs. And this means eigen in this repo under Thirdparty is not needed.
+2. Open cmake-gui, select Pangolin folder as the source path and the Pangolin/build folder as the binaries path.
+3. Click configure, select Visual Studio 16 2019 Win64(or your own) as the generator, click finish.
+4. After configure done, click Generate.
+5. Go to the Pangolin/build folder, double click the Pangolin.sln to open the peoject.
+6. Build ALL_BUILD in either debug or release mode you want. **(Mode should be the same as DBoW2 && g2o)**.
+7. ~~You'll get a error of "cannot open input file 'pthread.lib'", just ignore it.~~ No front error shows, if use vckpg installed required libs.
+8. After success build, the libraries will be in the lib folder of the Pangolin project source folder.
 
 ### ORBSLAM24Windows
 1. Open cmake-gui, select ORBSLAM24Windows folder as the source path and the ORBSLAM24Windows/build folder as the binaries path.
-2. Click configure, select Visual Studio 12 2013 Win64(or your own) as the generator, click finish.
+2. Click configure, select Visual Studio 16 2019 Win64 (or your own) as the generator, click finish.
 3. After configure done, click Generate.
 4. Go to the ORBSLAM24Windows/build folder, double click the ORB_SLAM2.sln to open the peoject.
 5. Choose either debug or release mode you want. **(Mode should be the same as DBoW2 && g2o && Pangolin)**.
@@ -72,7 +78,7 @@ First, we'll compile the projects in **Thirdparty** folder.
 ### Applications
 If you want to make apps, you can also build the mono-stero-RGBD projects provided.
 
-Take mono_tum app as an example, you can follow the steps below.  
+Take mono_tum app as an example, you can follow the steps below.
 1. Go to the ORBSLAM24Windows/build folder, double click the ORB_SLAM2.sln to open the peoject.
 2. Choose either debug or release mode you want. **(Build mode should be the same as DBoW2 && g2o && Pangolin && ORB_SLAM2)**.
 3. Right click the mono_tum project and then click generate.

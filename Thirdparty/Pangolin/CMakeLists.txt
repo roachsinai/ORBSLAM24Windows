@@ -6,6 +6,7 @@ set(PANGOLIN_VERSION ${PANGOLIN_VERSION_MAJOR}.${PANGOLIN_VERSION_MINOR})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules/")
 
+include("E:/vcpkg/scripts/buildsystems/vcpkg.cmake")
 # Platform configuration vars
 include(SetPlatformVars)
 
