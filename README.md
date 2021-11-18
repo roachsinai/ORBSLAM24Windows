@@ -20,8 +20,9 @@ Easy built orbslam2 by visual studio on windows of both debug and release mode
 
 ## Prerequisite
 1. OpenCV
- - Version is not required, but not too old. In this tutorial is 2.4.13.
- - Add `YOUR_OWN_PATH\opencv\build;` `YOUR_OWN_PATH\opencv\build\x64\vc12\bin;` to your environment variable "PATH", you can also add `YOUR_OWN_PATH\opencv\build\x86\vc12\bin;` if you want to bulid a x86 type application.
+ - ~~Version is not required, but not too old. In this tutorial is 2.4.13.~~
+ - ~~Add `YOUR_OWN_PATH\opencv\build;` `YOUR_OWN_PATH\opencv\build\x64\vc12\bin;` to your environment variable "PATH", you can also add `YOUR_OWN_PATH\opencv\build\x86\vc12\bin;` if you want to bulid a x86 type application.~~
+ - Use vcpkg install opencv is recommended.
 2. Cmake
  - Version should at least be 2.8.
 3. Visual Studio
